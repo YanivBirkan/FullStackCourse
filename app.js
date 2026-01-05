@@ -28,8 +28,4 @@ Edit1Button.addEventListener("click" ,OpenEdit1Over);
 
 Edit1OverlyButton.addEventListener("click" ,Edit1Details);
 console.log("aaaa")
-console.log("aaaa")
-console.log("aaaa")
-console.log("aaaa")
-console.log("aaaa")
-console.log("aaaa")
+
