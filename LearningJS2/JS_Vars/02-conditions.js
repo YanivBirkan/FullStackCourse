@@ -108,3 +108,44 @@
 //     console.log('avg:', avg)
 // }
 
+
+
+
+
+
+// Read 2 numbers and print the bigger one
+
+// let num1 = +prompt("enter first number");
+// let num2 = +prompt("enter second number");
+
+// console.log(`The biggest number is ${Math.max(num1,num2)}`);
+
+////////////////////////////////////////////////////////////////
+
+// Ask the user for the meal price,
+// and print the total price with a 10% tip
+// Use confirm() to ask the user if he was super happy,
+// if so, add 5% more
+
+var MealPrice= +prompt("Enter meal price");
+var NewPrice = MealPrice *1.1
+
+if(isHappy=confirm("feeling super happy?")){
+    NewPrice = MealPrice*1.15
+}
+
+console.log("New Price = "+ NewPrice)
+
+////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////
+
+// Read 3 numbers and check if they could be valid triangle sides,
+// and which triangle are they
+// triangle / isosceles / equilateral / right-angled
+// ישר זווית / שווה צלעות / שווה שוקיים / משולש
+
+/////////////////////////////////////////////////////////////////
+
+
