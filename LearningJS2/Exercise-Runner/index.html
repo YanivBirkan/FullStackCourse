@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Exercise Runner</title>
+</head>
+<body data-theme="light">
+    <div class="header-wrapper main-layout">
+        <div id="msg"></div>
+        <header class="main-content">
+            <section class="main-controlls">
+                <select name="exercise-selector" id="exercise-selector" class="xxsm-hide"></select>
+                <button id="script-runner" class="xsm-hide" title="Run selected exercise (R or Enter)"><span class="hotkey">R</span>un</button>
+            </section>
+            <section class="action-buttons">
+                <button id="help-btn" class="sm-hide" title="Help (H)"><span class="hotkey">H</span>elp</button>
+                <button id="clr-btn" class="sm-hide" title="Clear the console (L)">C<span class="hotkey">l</span>ear</button>
+                <button id="copy-btn" class="sm-hide" title="Copy exercise text as comment (C)"><span class="hotkey">C</span>opy</button>
+                <button id="settings-btn" class="sm-hide" title="Settings (S)">☰</button>
+            </section>
+        </header>
+    </div>
+    <section class="ex-number transparent"></section>
+    <section class="help transparent">
+        <table>
+            <thead>
+                <td colspan=2><p>Exercise Runner Hot Keys</p></td>
+            </thead>
+            <tr>
+                <td class="hotkey">c</td>
+                <td>Copy excercise text as comment</td>
+            </tr>
+            <tr>
+                <td class="hotkey">l</td>
+                <td>Clear the console</td>
+            </tr>
+            <tr>
+                <td class="hotkey">s</td>
+                <td>Toggle settings window</td>
+            </tr>
+            <tr>
+                <td class="hotkey">d</td>
+                <td>Toggle dark mode</td>
+            </tr>
+            <tr>
+                <td class="hotkey">a</td>
+                <td>Toggle auto run</td>
+            </tr>
+            <tr>
+                <td class="hotkey">p</td>
+                <td>Toggle snap to top</td>
+            </tr>
+            <tr>
+                <td class="hotkey">r</td>
+                <td>Run the current excercise code</td>
+            </tr>
+            <tr>
+                <td class="hotkey">h</td>
+                <td>Toggle this help screen</td>
+            </tr>
+            <tr>
+                <td class="hotkey">1 - 60</td>
+                <td>Enter excercise number to load it</td>
+            </tr>
+            <tr>
+                <td class="hotkey">&plus; &minus;</td>
+                <td>Increase or decrease font size</td>
+            </tr>
+            <tr>
+                <td class="hotkey">&darr;&uarr;</td>
+                <td>Next / Prev exercise</td>
+            </tr>
+        </table>
+    </section>
+    <section class="settings transparent">
+        <section class="font-buttons">
+            <p>Font Size:</p>
+            <section>
+                <button id="inc-font-btn" title="Increase font size (+)">A</button>
+                <button id="dec-font-btn" title="Decrease font size (-)">a</button>
+            </section>
+        </section>
+        <section class="dark-mode">
+            <label><span class="hotkey">D</span>ark Mode</label>
+            <label class="switch" title="Toggle dark mode (D)">
+                <input id="dark-mode-switch" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </section>
+        <section class="autorun">
+            <label><span class="hotkey">A</span>uto Run</label>
+            <label class="switch" title="Auto run (A)">
+                <input id="autorun-switch" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </section>
+        <section class="snap-to-top">
+            <label>Sna<span class="hotkey">p</span> to Top</label>
+            <label class="switch" title="Snap to top (P)">
+                <input id="snap-switch" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </section>
+    </section>
+    <section class="exercises main-layout"></section>
+    <aside>
+        <img class="logo" src="./assets/img/logo.png" />
+    </aside>
+    <script type="module" src="./js/exrunner.js"></script>
+</body>
+</html>
