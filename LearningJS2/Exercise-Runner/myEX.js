@@ -34,8 +34,9 @@ function printBestStudentName(){
 
         if(grade>maxGrade) {
             maxGrade=grade;
-            keepname=name
         }        
     }
+        keepname=studentNames[studentGrades.indexOf(maxGrade)];
+
                 console.log(keepname + " has the best grade : " + maxGrade);
 }
