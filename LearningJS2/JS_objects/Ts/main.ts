@@ -1,26 +1,26 @@
-// let age : number = 10;
-// console.log("age=" + age);
-
-
+// create player type :
 type Player = {
   id: number;
   score: number;
   name: string;
 }
-
+// create first player :
 let player: Player= {
     id:101,
     score:98,
     name:"aaa"
 }
+
+// vars :
 let cId :number = 101;
 let name1 : string = "bbb";
-console.log(createPlayer(name1));
-
 let playersArr: Player[] =  createPlayers(3);
-console.log("player2" , getPlayerById(102))
+let bestP: Player| null = findBestPlayer(playersArr);
 
+console.log("All plyers:" , playersArr);
+console.log("The best player is:" + bestP?.name+ " his score :" +bestP?.score );
 
+// functions:
 function createPlayer(name: string): Player {
   const newPlayer: Player = {
     id: cId++,
@@ -45,40 +45,19 @@ function getPlayerById(gid: number): Player | undefined{
     return fPlayer;
 }
 
-
-// var player = {
-//     id:101,
-//     score:98,
-//     name:'aaa'
-// }
+function findBestPlayer(playersArr: Player[]): Player |null {
+  let max: number = 0;
+  let best: Player | null= null;
+  for (let i = 0; i < playersArr.length; i++) {
+    const player :Player  = playersArr[i];
+    if(player.score>max){
+      best = player;
+      max = player.score;
+    } 
+  }
+  return best;
+}
 // var gNextId = player.id;
-
-// var playersArr =  createPlayers(3);
-// console.log("players:" , playersArr);
-// console.log("best:" ,findBestPlayer(playersArr));
-
-// function createPlayer(name){
-//     var newPlayer={
-//         id : gNextId++,
-//         score : Math.floor(Math.random() * 100),
-//         name : name,
-//     }
-//     return newPlayer;
-// }
-
-// function createPlayers(count){
-//     var players =[];
-//     for (let i = 0; i < count; i++) {
-//         const name = `player${i+1}`;
-//         players.push(createPlayer(name));
-//     }
-//     return players;
-// }
-
-// function getPlayerById(gid){
-//     const found = playersArr.find(({id}) => id === gid);
-//     return found;
-// }
 
 // function findBestPlayer(playersArr){
 //     var scores = [];
