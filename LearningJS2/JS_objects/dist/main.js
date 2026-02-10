@@ -1,61 +1,103 @@
 "use strict";
-// create first player :
-let player = {
-    id: 101,
-    score: 98,
-    name: "aaa"
-};
-// vars :
-let cId = 101;
-let name1 = "bbb";
-let playersArr = createPlayers(3);
-let bestP = findBestPlayer(playersArr);
-console.log("All plyers:", playersArr);
-console.log("The best player is:" + (bestP === null || bestP === void 0 ? void 0 : bestP.name) + " his score :" + (bestP === null || bestP === void 0 ? void 0 : bestP.score));
-// functions:
-function createPlayer(name) {
-    const newPlayer = {
-        id: cId++,
-        score: Math.floor(Math.random() * 100),
-        name,
+// // create player type :
+// type Player = {
+//   id: number;
+//   score: number;
+//   name: string;
+// }
+// // create first player :
+// let player: Player= {
+//     id:101,
+//     score:98,
+//     name:"aaa"
+// }
+let globalId = 101;
+const HarryPotter_actorList = [
+    { name: "daniel redclif", salary: 9000 }, { name: "emma wotsson", salary: 10000 }, { name: "ron wissly", salary: 9000 }
+];
+// let movie1 ={
+//   id:101,
+//   name:"harry potter",
+//   actors:[{name:"daniel redclif" , slary:9000} , {name:"emma wotsson" , salary:10000}]
+// }
+const moviesList = createMovies(3);
+//console.log("new movies =:" , createMovies(3));
+const movieList2 = [createMovie("m1", [createActor("actor 1", 100), createActor("actor 2", 100)]), createMovie("m2", [, createActor("actor 1 ", 100), createActor("actor 3", 100)])];
+//console.log(movieList2);
+const [actor, movie] = findActorWithBestSalary(moviesList);
+//console.log("moovies of actor 1 ", getMoviesOfActor("actor 1"));
+function createMovie(gName, gActors) {
+    let newMovie = {
+        id: globalId++,
+        name: gName,
+        actors: gActors
     };
-    return newPlayer;
+    return newMovie;
 }
-function createPlayers(count) {
-    const players = [];
-    for (let index = 0; index < count; index++) {
-        const name = `player${index + 1}`;
-        players.push(createPlayer(name));
+function createMovies(count) {
+    const moviesList = [];
+    for (let i = 0; i < count; i++) {
+        let countName = 0;
+        let newMovie = createMovie(`moovie ${i + 1}`, [createActor(`actor ${countName++}`, (Math.floor(Math.random() * 10000))), createActor(`actor ${countName++}`, (Math.floor(Math.random() * 10000)))]);
+        moviesList.push(newMovie);
     }
-    return players;
+    return moviesList;
 }
-function getPlayerById(gid) {
-    const fPlayer = playersArr.find(({ id }) => id === gid);
-    return fPlayer;
+function createActor(gName, gSalary) {
+    let NewActor = {
+        name: gName,
+        salary: gSalary
+    };
+    return NewActor;
 }
-function findBestPlayer(playersArr) {
+function findActorWithBestSalary(moviesList) {
     let max = 0;
-    let best = null;
-    for (let i = 0; i < playersArr.length; i++) {
-        const player = playersArr[i];
-        if (player.score > max) {
-            best = player;
-            max = player.score;
+    let MaxActorKeep = null;
+    let moovieKeep = null;
+    for (let i = 0; i < moviesList.length; i++) {
+        const movie = moviesList[i];
+        let movieActorList = movie.actors;
+        for (let y = 0; y < movieActorList.length; y++) {
+            const currActor = movieActorList[y];
+            if (currActor.salary > max) {
+                max = currActor.salary;
+                MaxActorKeep = currActor;
+                moovieKeep = moviesList[i];
+            }
         }
     }
-    return best;
+    return [MaxActorKeep, moovieKeep];
 }
-// var gNextId = player.id;
-// function findBestPlayer(playersArr){
-//     var scores = [];
-//     var max = 0;
-//     for (let i = 0; i < playersArr.length; i++) {
-//         const player = playersArr[i];
-//         scores.push(player.score);
-//     }
-//     for (let i = 0; i <scores.length; i++) {
-//         if(scores[i]>max) max=scores[i];
-//     }
-//     const best = playersArr.find(({score}) => score === max);
-//     return best;
-// }
+function getMoviesOfActor(gname) {
+    let actorMovies = [];
+    for (let i = 0; i < movieList2.length; i++) {
+        const currMovie = movieList2[i];
+        console.log(currMovie);
+        for (let j = 0; j < currMovie.actors.length; j++) {
+            const currMovieActor = currMovie.actors[j];
+            if ((currMovieActor === null || currMovieActor === void 0 ? void 0 : currMovieActor.name) == gname) {
+                actorMovies.push(currMovie);
+            }
+        }
+    }
+    return actorMovies;
+}
+countWordApperances("puki ben david and muki ben david");
+function countWordApperances(txt) {
+    var _a;
+    let words = txt.split(" ");
+    let wordscount = {};
+    for (let i = 0; i < words.length; i++) {
+        const word = words[i];
+        wordscount[word] = ((_a = wordscount[word]) !== null && _a !== void 0 ? _a : 0) + 1;
+        // let count: string =wordscount[word];
+        // if(wordscount[word]){
+        //   wordscount[word]++;
+        // }
+        // else{
+        //    wordscount[word] =1
+        // }
+        // // wordscount[word] =  (count) ? count+1 :1; 
+    }
+    console.log(wordscount);
+}
