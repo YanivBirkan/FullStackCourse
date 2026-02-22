@@ -170,69 +170,101 @@
 // }
 
 //ex 52 , Monster:
-type Monster = {
-  id?:number,
-  name?:string,
-  power?:number
-}
-let gNextId :number = 1;
-let monsters :Monster[] = createMonsters();
-monsters.push(createMonster("m5" , 80));
-//create mosters:
-function createMonsters(): Monster[]{
-  let Monsters:Monster[] = [];
-  for (let i = 0; i <4; i++) {
-    let newMonster:Monster= {
-      id:gNextId++,
-      name:(`m${i+1}`),
-      power:Math.floor(Math.random()*100)
-    }    
-    Monsters.push(newMonster);
-  }
-  return Monsters;
-}
-//create 1 monter:
-function createMonster(name:string , power:number) :Monster{
-  let newMonster :Monster={
-    id:gNextId++,
-    name:name,
-    power:power
-  }
-  return newMonster;
-}
-//get monter by Id:
-function getMonsterById(id :number) : Monster{
-  let keepMonster :Monster = {}
-  for (let i = 0; i < monsters.length; i++) {
-    const monster :Monster = monsters[i];
-    if(monster.id===id) keepMonster=monster;
-  }
-  return keepMonster;
-}
+// type Monster = {
+//   id:number,
+//   name:string,
+//   power:number
+// }
+// let gNextId :number = 1;
+// let monsters :Monster[] = createMonsters();
+// monsters.push(createMonster("m5" , 80));
+// //create mosters:
+// function createMonsters(): Monster[]{
+//   let Monsters:Monster[] = [];
+//   for (let i = 0; i <4; i++) {
+//     let newMonster:Monster= {
+//       id:gNextId++,
+//       name:(`m${i+1}`),
+//       power:Math.floor(Math.random()*100)
+//     }    
+//     Monsters.push(newMonster);
+//   }
+//   return Monsters;
+// }
+// //create 1 monter:
+// function createMonster(name:string , power:number) :Monster{
+//   let newMonster :Monster={
+//     id:gNextId++,
+//     name:name,
+//     power:power
+//   }
+//   return newMonster;
+// }
+// //get monter by Id:
+// function getMonsterById(id :number) : Monster{
+//   let keepMonster :Monster = monsters[0]
+//   for (let i = 0; i < monsters.length; i++) {
+//     const monster :Monster = monsters[i];
+//     if(monster.id===id) keepMonster=monster;
+//   }
+//   return keepMonster;
+// }
 
-//delete monter by Id:
-function deleteMonsterById(id :number) {
-  for (let i = 0; i < monsters.length; i++) {
-    const monster :Monster= monsters[i];
-    if(monster.id===id) monsters.splice(i,1);
+// //delete monter by Id:
+// function deleteMonsterById(id :number) {
+//   for (let i = 0; i < monsters.length; i++) {
+//     const monster :Monster= monsters[i];
+//     if(monster.id===id) monsters.splice(i,1);
     
-  }
-}
-deleteMonsterById(5)
-console.log(monsters);
+//   }
+// }
+// console.log(monsters);
+// deleteMonsterById(5)
 
-updateMonterById(2,100)
-console.log(monsters);
-//update monster:
-function updateMonterById(id:number , newPower:number){
-  for (let i = 0; i < monsters.length; i++) {
-    const monster :Monster = monsters[i];
-    if(monster.id===id){
-      monster["power"] = newPower;
-    }
-  }
-}
+// // debugger;
+// updateMonterById(2,100);
+// console.log(monsters);
+// console.log("check");
+// //update monster:
+// function updateMonterById(id:number , newPower:number){
+//   for (let i = 0; i < monsters.length; i++) {
+//     const monster :Monster = monsters[i];
+//     if(monster.id===id){
+//       monster["power"] = newPower;
+//     }
+//   }
+// }
+// function findMostPowerful(monsters: Monster[]): Monster | null {
+//   if (monsters.length === 0) return null;
+
+//   let keepPower: number = monsters[0].power;
+//   let keepMonster: Monster = monsters[0];
+
+//   for (let i = 1; i < monsters.length; i++) {
+//     const monster: Monster = monsters[i];
+
+//     if (monster.power > keepPower) {
+//       keepPower = monster.power;
+//       keepMonster = monster;
+//     }
+//   }
+
+//   return keepMonster;
+// }
 
 
+// breadMonsters(1,2)
+// function breadMonsters(monster1Id:number , monster2Id:number ) :Monster{
+//   const monster1:Monster = getMonsterById(monster1Id);
+//   const monster2:Monster = getMonsterById(monster2Id);
+//   let newMonsterPower =(monster1.power + monster2.power) /2;
+//   let newMonsterName = monster1.name.substring(0,monster1.name.length/2) + monster2.name.substring(monster2.name.length/2 ,monster2.name.length);
+//   let newMonster :Monster={
+//     id:gNextId++,
+//     name:newMonsterName,
+//     power:newMonsterPower
+//   }
+//   return newMonster
+// }
 
-
+//ex 53 monsters
