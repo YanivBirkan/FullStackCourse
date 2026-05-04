@@ -8,7 +8,7 @@ if(enteredPin==pin){
    }
    else{
     currBalance -= withdrawNum;
-    alert(`current Balance =${currBalance}`) ;
+    alert("current Balance = " + currBalance) ;
    }
 
 }
