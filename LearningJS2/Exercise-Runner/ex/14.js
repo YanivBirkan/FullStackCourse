@@ -1,3 +1,4 @@
+//ex 14
 function greetUser (name){
     alert("welcome " + name);
 }

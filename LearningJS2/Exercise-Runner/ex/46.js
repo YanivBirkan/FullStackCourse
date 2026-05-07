@@ -6,10 +6,10 @@ function multBy(nums, multiplier,isImmutable){
         var numscopy = nums.slice();
         return numscopy
     }
-    // var newArr =[];
-    // for (let i = 0; i < nums.length; i++) {
-    //     const num = nums[i];
-    //     newArr.push(num*multiplier);    
-    // }
-    // return newArr
+    var newArr =[];
+    for (let i = 0; i < nums.length; i++) {
+        const num = nums[i];
+        newArr.push(num*multiplier);    
+    }
+    return newArr
 }

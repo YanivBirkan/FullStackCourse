@@ -1,5 +1,4 @@
-//generte random password 
-// console.log("password: " + generatePass(6));
+//ex37
 function generatePass(passLength){
     var newPass='';
     var chars ='abcdefghijklmnopqrstvurwxyz1234567890';
@@ -13,3 +12,4 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+console.log(generatePass(5))

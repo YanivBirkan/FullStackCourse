@@ -1,8 +1,4 @@
-// Exercise 34 - myIndexOf()
-// Implement a function named myIndexOf(str, searchStr) which receives two strings.
-
-// The function returns the index of the second string within the first, or -1 if it wasn’t found (do not use the built-in indexOf()function… ).
-
+//ex35
 console.log(encrypt('ABC'));
 
 function encrypt (str){

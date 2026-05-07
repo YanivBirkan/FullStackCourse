@@ -170,102 +170,102 @@
 // }
 
 //ex 52 , Monster:
-// type Monster = {
-//   id:number,
-//   name:string,
-//   power:number
-// }
-// let gNextId :number = 1;
-// let monsters :Monster[] = createMonsters();
-// monsters.push(createMonster("m5" , 80));
-// //create mosters:
-// function createMonsters(): Monster[]{
-//   let Monsters:Monster[] = [];
-//   for (let i = 0; i <4; i++) {
-//     let newMonster:Monster= {
-//       id:gNextId++,
-//       name:(`m${i+1}`),
-//       power:Math.floor(Math.random()*100)
-//     }    
-//     Monsters.push(newMonster);
-//   }
-//   return Monsters;
-// }
-// //create 1 monter:
-// function createMonster(name:string , power:number) :Monster{
-//   let newMonster :Monster={
-//     id:gNextId++,
-//     name:name,
-//     power:power
-//   }
-//   return newMonster;
-// }
-// //get monter by Id:
-// function getMonsterById(id :number) : Monster{
-//   let keepMonster :Monster = monsters[0]
-//   for (let i = 0; i < monsters.length; i++) {
-//     const monster :Monster = monsters[i];
-//     if(monster.id===id) keepMonster=monster;
-//   }
-//   return keepMonster;
-// }
+type Monster = {
+  id:number,
+  name:string,
+  power:number
+}
+let gNextId :number = 1;
+let monsters :Monster[] = createMonsters();
+monsters.push(createMonster("m5" , 80));
+//create mosters:
+function createMonsters(): Monster[]{
+  let Monsters:Monster[] = [];
+  for (let i = 0; i <4; i++) {
+    let newMonster:Monster= {
+      id:gNextId++,
+      name:(`m${i+1}`),
+      power:Math.floor(Math.random()*100)
+    }    
+    Monsters.push(newMonster);
+  }
+  return Monsters;
+}
+//create 1 monter:
+function createMonster(name:string , power:number) :Monster{
+  let newMonster :Monster={
+    id:gNextId++,
+    name:name,
+    power:power
+  }
+  return newMonster;
+}
+//get monter by Id:
+function getMonsterById(id :number) : Monster{
+  let keepMonster :Monster = monsters[0]
+  for (let i = 0; i < monsters.length; i++) {
+    const monster :Monster = monsters[i];
+    if(monster.id===id) keepMonster=monster;
+  }
+  return keepMonster;
+}
 
-// //delete monter by Id:
-// function deleteMonsterById(id :number) {
-//   for (let i = 0; i < monsters.length; i++) {
-//     const monster :Monster= monsters[i];
-//     if(monster.id===id) monsters.splice(i,1);
+//delete monter by Id:
+function deleteMonsterById(id :number) {
+  for (let i = 0; i < monsters.length; i++) {
+    const monster :Monster= monsters[i];
+    if(monster.id===id) monsters.splice(i,1);
     
-//   }
-// }
-// console.log(monsters);
-// deleteMonsterById(5)
+  }
+}
+console.log(monsters);
+deleteMonsterById(5)
 
-// // debugger;
-// updateMonterById(2,100);
-// console.log(monsters);
-// console.log("check");
-// //update monster:
-// function updateMonterById(id:number , newPower:number){
-//   for (let i = 0; i < monsters.length; i++) {
-//     const monster :Monster = monsters[i];
-//     if(monster.id===id){
-//       monster["power"] = newPower;
-//     }
-//   }
-// }
-// function findMostPowerful(monsters: Monster[]): Monster | null {
-//   if (monsters.length === 0) return null;
+// debugger;
+updateMonterById(2,100);
+console.log(monsters);
+console.log("check");
+//update monster:
+function updateMonterById(id:number , newPower:number){
+  for (let i = 0; i < monsters.length; i++) {
+    const monster :Monster = monsters[i];
+    if(monster.id===id){
+      monster["power"] = newPower;
+    }
+  }
+}
+function findMostPowerful(monsters: Monster[]): Monster | null {
+  if (monsters.length === 0) return null;
 
-//   let keepPower: number = monsters[0].power;
-//   let keepMonster: Monster = monsters[0];
+  let keepPower: number = monsters[0].power;
+  let keepMonster: Monster = monsters[0];
 
-//   for (let i = 1; i < monsters.length; i++) {
-//     const monster: Monster = monsters[i];
+  for (let i = 1; i < monsters.length; i++) {
+    const monster: Monster = monsters[i];
 
-//     if (monster.power > keepPower) {
-//       keepPower = monster.power;
-//       keepMonster = monster;
-//     }
-//   }
+    if (monster.power > keepPower) {
+      keepPower = monster.power;
+      keepMonster = monster;
+    }
+  }
 
-//   return keepMonster;
-// }
+  return keepMonster;
+}
 
 
-// breadMonsters(1,2)
-// function breadMonsters(monster1Id:number , monster2Id:number ) :Monster{
-//   const monster1:Monster = getMonsterById(monster1Id);
-//   const monster2:Monster = getMonsterById(monster2Id);
-//   let newMonsterPower =(monster1.power + monster2.power) /2;
-//   let newMonsterName = monster1.name.substring(0,monster1.name.length/2) + monster2.name.substring(monster2.name.length/2 ,monster2.name.length);
-//   let newMonster :Monster={
-//     id:gNextId++,
-//     name:newMonsterName,
-//     power:newMonsterPower
-//   }
-//   return newMonster
-// }
+breadMonsters(1,2)
+function breadMonsters(monster1Id:number , monster2Id:number ) :Monster{
+  const monster1:Monster = getMonsterById(monster1Id);
+  const monster2:Monster = getMonsterById(monster2Id);
+  let newMonsterPower =(monster1.power + monster2.power) /2;
+  let newMonsterName = monster1.name.substring(0,monster1.name.length/2) + monster2.name.substring(monster2.name.length/2 ,monster2.name.length);
+  let newMonster :Monster={
+    id:gNextId++,
+    name:newMonsterName,
+    power:newMonsterPower
+  }
+  return newMonster
+}
 
 //ex 53 students:
 // type Student = {
@@ -339,111 +339,128 @@
 // }
 
 //ex 54 plane:
-interface Airplane {
-  model: number | string;
-  seatCount: number;
-};
+// interface Airplane {
+//   model: number | string;
+//   seatCount: number;
+// };
 
-interface Flight {
-  date: number;
-  departure:string,
-  destination:string,
-  plane: Airplane,
-  passengers:Passenger[];
+// interface Flight {
+//   date: number;
+//   departure:string,
+//   destination:string,
+//   plane: Airplane,
+//   passengers:Passenger[];
 
-};
+// };
 
-interface Passenger {
-  id: number;
-  fullName: string;
-  flights: Flight[];
-};
+// interface Passenger {
+//   id: number;
+//   fullName: string;
+//   flights: Flight[];
+// };
 
 
-const gPlanes:Airplane[]= createPlanes();
-const gPassengers:Passenger[] = createPassengers(5);
-const gFlights:Flight[]=createFlights();
-console.log("Passengers List:",gPassengers);
-console.log("Planes List:",gPlanes);
-console.log("Flights List:",gFlights);
+// const gPlanes:Airplane[]= createPlanes();
+// const gPassengers:Passenger[] = createPassengers(5);
+// const gFlights:Flight[]=createFlights();
+// console.log("Passengers List:",gPassengers);
+// console.log("Planes List:",gPlanes);
+// console.log("Flights List:",gFlights);
 
-function createPlane(model:number|string , seatcount:number):Airplane{
-  const newPlane:Airplane = {
-    model:model,
-    seatCount:seatcount
-  };
-  return newPlane;
-}
-function createPlanes():Airplane[]{
-  let airplane1:Airplane=createPlane(1234,100);
-  let airplane2:Airplane=createPlane("A320-1",140);
-  return [airplane1,airplane2];
-}
+// function createPlane(model:number|string , seatcount:number):Airplane{
+//   const newPlane:Airplane = {
+//     model:model,
+//     seatCount:seatcount
+//   };
+//   return newPlane;
+// }
+// function createPlanes():Airplane[]{
+//   let airplane1:Airplane=createPlane(1234,100);
+//   let airplane2:Airplane=createPlane("A320-1",140);
+//   return [airplane1,airplane2];
+// }
 
-function generate7DigitNumber(): number {
-  // Generates a random integer between 0 and 9999999
-  const randomNum = Math.floor(Math.random() * 10000000);
-  return randomNum;
-}
-function createPassenger(name:string , flights:Flight[]):Passenger{
-  const newPassenger:Passenger={
-    id:generate7DigitNumber(),
-    fullName:name,
-    flights:flights
-  };
-  return newPassenger;
-}
-function createPassengers(count:number):Passenger[]{
-  const passengerArr:Passenger[]=[];
-  for (let i = 0; i < count; i++) {
-    passengerArr.push(createPassenger(`P${i+1}` ,[]));
-  }
-  return passengerArr;
+// function generate7DigitNumber(): number {
+//   // Generates a random integer between 0 and 9999999
+//   const randomNum = Math.floor(Math.random() * 10000000);
+//   return randomNum;
+// }
+// function createPassenger(name:string , flights:Flight[]):Passenger{
+//   const newPassenger:Passenger={
+//     id:generate7DigitNumber(),
+//     fullName:name,
+//     flights:flights
+//   };
+//   return newPassenger;
+// }
+// function createPassengers(count:number):Passenger[]{
+//   const passengerArr:Passenger[]=[];
+//   for (let i = 0; i < count; i++) {
+//     passengerArr.push(createPassenger(`P${i+1}` ,[]));
+//   }
+//   return passengerArr;
   
-}
+// }
 
-function createFlight(departure:string , destination:string , plane:Airplane):Flight{
-  const newFlight:Flight={
-      date:0,
-      departure:departure,
-      destination:destination,
-      plane: plane,
-      passengers:[]
+// function createFlight(departure:string , destination:string , plane:Airplane):Flight{
+//   const newFlight:Flight={
+//       date:0,
+//       departure:departure,
+//       destination:destination,
+//       plane: plane,
+//       passengers:[]
+//   }
+//   return newFlight
+
+// }
+
+// function createFlights():Flight[]{
+//   // const flighDatatArr:[string, string, Airplane][] = [["tel aviv" , "rome" , gPlanes[0]] , ["tel aviv" , "paris" , gPlanes[1]] ,["tel aviv" , "eilat" , gPlanes[0]] ,["tel aviv" , "london" , gPlanes[1]] ,["tel aviv" , "moscow" , gPlanes[0]] ]
+
+//   let Flight1:Flight=createFlight("tel aviv" , "rome" , gPlanes[0]);
+//   let Flight2:Flight=createFlight("tel aviv" , "eilat" , gPlanes[1]);
+//   return [Flight1,Flight2];
+// }
+// function isFullyBooked(flight:Flight):boolean{
+//   return flight.passengers.length >=flight.plane.seatCount;
+// }
+// function bookFlight(passenger:Passenger , flight:Flight){
+
+//   if(!isFullyBooked){
+//     flight.passengers.push(passenger);
+//     passenger.flights.push(flight);
+//     console.log("Flight orderd succesfully")
+//   }else{
+//     console.log("The plane is already full");
+//   }
+// }
+// function getFrequentFlyers(){
+//   let maxflights:number =0;
+//   let frequentFlyers:Passenger[]=[]
+//   for (let i = 0; i < gPassengers.length; i++) {
+//     const passenger = gPassengers[i];
+//     if(passenger.flights.length>maxflights){
+//       maxflights=passenger.flights.length;
+//       frequentFlyers=[passenger]
+//     }else if(passenger.flights.length===maxflights){
+//       frequentFlyers.push(passenger);
+//     }
+//   }
+// }
+
+
+
+//functions exs:
+//ex 17
+
+
+function isAbove18(age:number , name:string){
+  if(age<18) {
+    alert(name + " you are too young");
+    return false;
   }
-  return newFlight
-
-}
-
-function createFlights():Flight[]{
-  // const flighDatatArr:[string, string, Airplane][] = [["tel aviv" , "rome" , gPlanes[0]] , ["tel aviv" , "paris" , gPlanes[1]] ,["tel aviv" , "eilat" , gPlanes[0]] ,["tel aviv" , "london" , gPlanes[1]] ,["tel aviv" , "moscow" , gPlanes[0]] ]
-
-  let Flight1:Flight=createFlight("tel aviv" , "rome" , gPlanes[0]);
-  let Flight2:Flight=createFlight("tel aviv" , "eilat" , gPlanes[1]);
-  return [Flight1,Flight2];
-}
-function isFullyBooked(flight:Flight):boolean{
-  return flight.passengers.length >=flight.plane.seatCount;
-}
-function bookFlight(passenger:Passenger , flight:Flight){
-
-  if(!isFullyBooked){
-    flight.passengers.push(passenger);
-    passenger.flights.push(flight);
-    console.log("Flight orderd succesfully")
-  }else{
-    console.log("The plane is already full");
-  }
-}
-function getFrequentFlyers(){
-  let maxflights:number =0;
-  let frequentFlyers:Passenger[]=[]
-  for (let i = 0; i < gPassengers.length; i++) {
-    const passenger = gPassengers[i];
-    if(passenger.flights.length>maxflights){
-      maxflights=passenger.flights.length;
-      frequentFlyers=[passenger]
-    }else if(passenger.flights.length===maxflights){
-      frequentFlyers.push(passenger);
-    }
-  }
+  else{
+    alert (name + " you are above 18");
+    return true;
+  } 
 }

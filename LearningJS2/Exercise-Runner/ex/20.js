@@ -1,8 +1,4 @@
-// 20. Read 10 numbers from the user and print:
-// a. The maximum number.
-// b. The minimum number.
-// c. The average.
-//////////////////////
+// ex 20
 
 var count = 0;
 var max = 0;

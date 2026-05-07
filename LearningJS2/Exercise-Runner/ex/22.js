@@ -1,4 +1,4 @@
-// 22. Write a function named myPow which receives 2 parameters: base, exponent
+// ex 22
 function myPow(base , exponent){
     sum = Math.pow(base,exponent);
     return sum;

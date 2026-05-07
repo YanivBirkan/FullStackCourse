@@ -1,6 +1,5 @@
 var str = 'Igal,Moshe,Hai';
 GetShortNLong(str);
-// console.log("Shortest Name: " + GetShort());
 
 function GetShortNLong(str){
     var short = str;
