@@ -162,3 +162,15 @@ function getMostCentralCity() :string{
     const mostCntral:string = cities[minDistanceCityIndex];
     return mostCntral;
 }
+
+
+//ex 55-1
+const gMat:number[][] = [
+    [1,0,2],
+    [3,2,1],
+    [2,4,0]
+]
+function sumCol(mat:number[][] , colId:number):number{
+
+    return 0;
+}
