@@ -109,68 +109,169 @@
 
 //ex -city distance table
 
-const cities:string[] = ['A','B','C','D'];
-const distanceMat:number[][] = [
-    [0,18,10,12],
-    [18,0,17,20],
-    [10,17,0,13],
-    [12,20,13,0]
-];
-interface City {
-    name:string,
-    distance:number
-};
-//console.log("",farestCity("A",distanceMat));
-//get farest city:
-function farestCity(city:string , distMat:number[][]) :City{
-    const cityIndex:number = cities.indexOf(city);
-    let max:number =0;
-    let maxKeep:number=0;
-    for (let i = 0; i < cities.length; i++){ 
-        const dist = distMat[cityIndex][i];
-        if(dist>max){
-            max=dist;
-            maxKeep = i;
-        }
-    }
-    const cityD:City = {name:cities[maxKeep] , distance:max}
-    return cityD;
-}
+// const cities:string[] = ['A','B','C','D'];
+// const distanceMat:number[][] = [
+//     [0,18,10,12],
+//     [18,0,17,20],
+//     [10,17,0,13],
+//     [12,20,13,0]
+// ];
+// interface City {
+//     name:string,
+//     distance:number
+// };
+// //console.log("",farestCity("A",distanceMat));
+// //get farest city:
+// function farestCity(city:string , distMat:number[][]) :City{
+//     const cityIndex:number = cities.indexOf(city);
+//     let max:number =0;
+//     let maxKeep:number=0;
+//     for (let i = 0; i < cities.length; i++){ 
+//         const dist = distMat[cityIndex][i];
+//         if(dist>max){
+//             max=dist;
+//             maxKeep = i;
+//         }
+//     }
+//     const cityD:City = {name:cities[maxKeep] , distance:max}
+//     return cityD;
+// }
 
-//farest cities:
-// printFarest();
-function printFarest(){
-    for (let i = 0; i <cities.length; i++) {
-        const city:string = cities[i];
-        const farestcity:City = farestCity(city,distanceMat)
-        console.log("city:" + city + "" , farestcity);
-    }
-}
+// //farest cities:
+// // printFarest();
+// function printFarest(){
+//     for (let i = 0; i <cities.length; i++) {
+//         const city:string = cities[i];
+//         const farestcity:City = farestCity(city,distanceMat)
+//         console.log("city:" + city + "" , farestcity);
+//     }
+// }
 
-//find central city:
-console.log(`the central city : ${getMostCentralCity()}`);
-function getMostCentralCity() :string{
-    let maxDistances:number[] = []
-    for (let i = 0; i < distanceMat.length; i++) {
-        // const city = cities[i];
-        const cityDistances:number[] = distanceMat[i];
-        const maxDistance:number =Math.max(...cityDistances);
-        maxDistances.push(maxDistance); 
-    }
-    const minDistance:number = Math.min(...maxDistances);
-    const minDistanceCityIndex:number = maxDistances.indexOf(minDistance);
-    const mostCntral:string = cities[minDistanceCityIndex];
-    return mostCntral;
-}
+// //find central city:
+// console.log(`the central city : ${getMostCentralCity()}`);
+// function getMostCentralCity() :string{
+//     let maxDistances:number[] = []
+//     for (let i = 0; i < distanceMat.length; i++) {
+//         // const city = cities[i];
+//         const cityDistances:number[] = distanceMat[i];
+//         const maxDistance:number =Math.max(...cityDistances);
+//         maxDistances.push(maxDistance); 
+//     }
+//     const minDistance:number = Math.min(...maxDistances);
+//     const minDistanceCityIndex:number = maxDistances.indexOf(minDistance);
+//     const mostCntral:string = cities[minDistanceCityIndex];
+//     return mostCntral;
+// }
 
 
-//ex 55-1
+//ex 55
 const gMat:number[][] = [
     [1,0,2],
     [3,2,1],
-    [2,4,0]
+    [2,1,9],
+    
 ]
+console.log(`sum of col 1 = ${sumCol(gMat,0)}`);
 function sumCol(mat:number[][] , colId:number):number{
+    let sum:number =0;
+    for (let i = 0; i < mat.length; i++) {
+        const num:number = mat[i][colId];
+        sum+=num;
+    }
+    return sum;
+}
+console.log(`sum of row 1 = ${sumRow(gMat,0)}`);
 
-    return 0;
+function sumRow(mat:number[][] , rowId:number):number{
+    let sum:number =0;
+    for (let i = 0; i < mat[0].length; i++) {
+        const num:number = mat[rowId][i];
+        sum+=num;
+    }
+    return sum;
+}
+console.log(`max num  = ${findMax(gMat)}`);
+
+function findMax(mat:number[][]):number{
+    let max:number =0;
+    for (let i = 0; i < mat.length; i++) {
+        for (let j = 0; j < mat[0].length; j++) {
+            let num:number= mat[i][j];
+            if(max<num) max=num;
+        }        
+    }
+    return max;
+}
+console.log(`max num  = ${findMax(gMat)}`);
+
+function findAvg(mat:number[][]):number{
+    let sum:number =0;
+    for (let i = 0; i < mat.length; i++) {
+        for (let j = 0; j < mat[0].length; j++) {
+            let num:number= mat[i][j];
+            sum+=num;
+        }        
+    }
+    return sum/(mat.length *mat[0].length);
+}
+
+function sumArea(mat:number[][], rowIdxStart:number, rowIdxEnd:number, colIdxStart:number,
+colIdxEnd:number):number{
+    let sum:number =0;
+    for (let i = rowIdxStart; i <=rowIdxEnd; i++) {
+        for (let j = colIdxStart; j <= colIdxEnd; j++) {
+            const num:number = mat[i][j];
+            sum +=num;
+        }        
+    }
+    return sum;
+}
+
+//ex 56
+console.log(`The function is ${checkIfSymmetric(gMat) ? `symetric` : `not symetric`}`)
+function checkIfSymmetric(mat:number[][]){
+    if(mat.length !== mat[0].length) return false;
+    else {
+        for (let i = 0; i < mat.length; i++) {
+            for (let j = 0; j < mat[0].length; j++) {
+                if(mat[i][j]!== mat[j][i]) return false;
+            }            
+        }
+        return true;
+    }
+}
+
+//ex 57
+console.log(findMode(gMat))
+function findMode(mat:number[][]):number[]{
+   const modeList:Record<string, number> = modeMap(mat);
+   let max:number = 0;
+   let modenums:number[] = [];
+   for (const numKey in modeList) {
+      let countVal:number = modeList[numKey]; 
+      if(countVal>max) {
+        max=countVal;
+        modenums= [+numKey]
+      }else if(countVal===max){
+        modenums.push(+numKey)
+      }
+   }
+   return modenums;
+}
+
+function modeMap(mat:number[][]):Record<string, number>{
+    let modesList:Record<string, number> = {};
+    for (let i = 0; i < mat.length; i++) {
+        for (let j = 0; j < mat[0].length; j++) {
+            const num:number=mat[i][j];
+            modesList[num] = (modesList[num] ?? 0) + 1;
+            // if(modesList[num]){
+            //     modesList[num]++;
+            // }else{
+            //     modesList[num] =1;
+            // }
+        }            
+    }
+    
+    return modesList;
 }

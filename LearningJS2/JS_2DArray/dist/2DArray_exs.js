@@ -105,51 +105,160 @@
 //     console.table(mat);
 // }
 //ex -city distance table
-const cities = ['A', 'B', 'C', 'D'];
-const distanceMat = [
-    [0, 18, 10, 12],
-    [18, 0, 17, 20],
-    [10, 17, 0, 13],
-    [12, 20, 13, 0]
+// const cities:string[] = ['A','B','C','D'];
+// const distanceMat:number[][] = [
+//     [0,18,10,12],
+//     [18,0,17,20],
+//     [10,17,0,13],
+//     [12,20,13,0]
+// ];
+// interface City {
+//     name:string,
+//     distance:number
+// };
+// //console.log("",farestCity("A",distanceMat));
+// //get farest city:
+// function farestCity(city:string , distMat:number[][]) :City{
+//     const cityIndex:number = cities.indexOf(city);
+//     let max:number =0;
+//     let maxKeep:number=0;
+//     for (let i = 0; i < cities.length; i++){ 
+//         const dist = distMat[cityIndex][i];
+//         if(dist>max){
+//             max=dist;
+//             maxKeep = i;
+//         }
+//     }
+//     const cityD:City = {name:cities[maxKeep] , distance:max}
+//     return cityD;
+// }
+// //farest cities:
+// // printFarest();
+// function printFarest(){
+//     for (let i = 0; i <cities.length; i++) {
+//         const city:string = cities[i];
+//         const farestcity:City = farestCity(city,distanceMat)
+//         console.log("city:" + city + "" , farestcity);
+//     }
+// }
+// //find central city:
+// console.log(`the central city : ${getMostCentralCity()}`);
+// function getMostCentralCity() :string{
+//     let maxDistances:number[] = []
+//     for (let i = 0; i < distanceMat.length; i++) {
+//         // const city = cities[i];
+//         const cityDistances:number[] = distanceMat[i];
+//         const maxDistance:number =Math.max(...cityDistances);
+//         maxDistances.push(maxDistance); 
+//     }
+//     const minDistance:number = Math.min(...maxDistances);
+//     const minDistanceCityIndex:number = maxDistances.indexOf(minDistance);
+//     const mostCntral:string = cities[minDistanceCityIndex];
+//     return mostCntral;
+// }
+//ex 55
+const gMat = [
+    [1, 0, 2],
+    [3, 2, 1],
+    [2, 1, 9],
 ];
-;
-//console.log("",farestCity("A",distanceMat));
-//get farest city:
-function farestCity(city, distMat) {
-    const cityIndex = cities.indexOf(city);
+console.log(`sum of col 1 = ${sumCol(gMat, 0)}`);
+function sumCol(mat, colId) {
+    let sum = 0;
+    for (let i = 0; i < mat.length; i++) {
+        const num = mat[i][colId];
+        sum += num;
+    }
+    return sum;
+}
+console.log(`sum of row 1 = ${sumRow(gMat, 0)}`);
+function sumRow(mat, rowId) {
+    let sum = 0;
+    for (let i = 0; i < mat[0].length; i++) {
+        const num = mat[rowId][i];
+        sum += num;
+    }
+    return sum;
+}
+console.log(`max num  = ${findMax(gMat)}`);
+function findMax(mat) {
     let max = 0;
-    let maxKeep = 0;
-    for (let i = 0; i < cities.length; i++) {
-        const dist = distMat[cityIndex][i];
-        if (dist > max) {
-            max = dist;
-            maxKeep = i;
+    for (let i = 0; i < mat.length; i++) {
+        for (let j = 0; j < mat[0].length; j++) {
+            let num = mat[i][j];
+            if (max < num)
+                max = num;
         }
     }
-    const cityD = { name: cities[maxKeep], distance: max };
-    return cityD;
+    return max;
 }
-//farest cities:
-// printFarest();
-function printFarest() {
-    for (let i = 0; i < cities.length; i++) {
-        const city = cities[i];
-        const farestcity = farestCity(city, distanceMat);
-        console.log("city:" + city + "", farestcity);
+console.log(`max num  = ${findMax(gMat)}`);
+function findAvg(mat) {
+    let sum = 0;
+    for (let i = 0; i < mat.length; i++) {
+        for (let j = 0; j < mat[0].length; j++) {
+            let num = mat[i][j];
+            sum += num;
+        }
+    }
+    return sum / (mat.length * mat[0].length);
+}
+function sumArea(mat, rowIdxStart, rowIdxEnd, colIdxStart, colIdxEnd) {
+    let sum = 0;
+    for (let i = rowIdxStart; i <= rowIdxEnd; i++) {
+        for (let j = colIdxStart; j <= colIdxEnd; j++) {
+            const num = mat[i][j];
+            sum += num;
+        }
+    }
+    return sum;
+}
+//ex 56
+console.log(`The function is ${checkIfSymmetric(gMat) ? `symetric` : `not symetric`}`);
+function checkIfSymmetric(mat) {
+    if (mat.length !== mat[0].length)
+        return false;
+    else {
+        for (let i = 0; i < mat.length; i++) {
+            for (let j = 0; j < mat[0].length; j++) {
+                if (mat[i][j] !== mat[j][i])
+                    return false;
+            }
+        }
+        return true;
     }
 }
-//find central city:
-console.log(`the central city : ${getMostCentralCity()}`);
-function getMostCentralCity() {
-    let maxDistances = [];
-    for (let i = 0; i < distanceMat.length; i++) {
-        // const city = cities[i];
-        const cityDistances = distanceMat[i];
-        const maxDistance = Math.max(...cityDistances);
-        maxDistances.push(maxDistance);
+//ex 57
+console.log(findMode(gMat));
+function findMode(mat) {
+    const modeList = modeMap(mat);
+    let max = 0;
+    let modenums = [];
+    for (const numKey in modeList) {
+        let countVal = modeList[numKey];
+        if (countVal > max) {
+            max = countVal;
+            modenums = [+numKey];
+        }
+        else if (countVal === max) {
+            modenums.push(+numKey);
+        }
     }
-    const minDistance = Math.min(...maxDistances);
-    const minDistanceCityIndex = maxDistances.indexOf(minDistance);
-    const mostCntral = cities[minDistanceCityIndex];
-    return mostCntral;
+    return modenums;
+}
+function modeMap(mat) {
+    var _a;
+    let modesList = {};
+    for (let i = 0; i < mat.length; i++) {
+        for (let j = 0; j < mat[0].length; j++) {
+            const num = mat[i][j];
+            modesList[num] = ((_a = modesList[num]) !== null && _a !== void 0 ? _a : 0) + 1;
+            // if(modesList[num]){
+            //     modesList[num]++;
+            // }else{
+            //     modesList[num] =1;
+            // }
+        }
+    }
+    return modesList;
 }
