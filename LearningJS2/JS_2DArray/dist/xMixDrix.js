@@ -2,26 +2,63 @@
 let gBoard = createBoard();
 let gIsUserMove = true;
 let gPos = {};
-//check an
-gPos = playersMove();
-console.log(gPos);
-console.table(gBoard);
-gPos = playersMove();
-console.log(gPos);
-console.table(gBoard);
-gPos = playersMove();
-console.log(gPos);
-console.table(gBoard);
-let symbol = gIsUserMove ? 'X' : "O";
-let isVictory = checkVictory(gPos, symbol);
-if (isVictory)
-    console.log("V");
-//check 3 in a row \col \ diagnol:
+//init the game
+init();
+//init the board
+function init() {
+    for (let i = 0; i < 3; i++) {
+        gBoard[i] = [];
+        for (let j = 0; j < 3; j++) {
+            gBoard[i][j] = "";
+        }
+    }
+    console.table(gBoard);
+    gIsUserMove = true;
+    playGame();
+}
+function playGame() {
+    let isGameOn = true;
+    let movesCount = 0;
+    let cellsCount = Math.pow(gBoard.length, 2);
+    while (isGameOn) {
+        //move
+        gPos = playersMove();
+        console.log(gPos);
+        console.table(gBoard);
+        movesCount++;
+        //checks afte move
+        let symbol = gIsUserMove ? 'X' : "O";
+        let isVictory = checkVictory(gPos, symbol);
+        if (isVictory) {
+            console.log(`Victory ,  ${gIsUserMove ? "user won" : " computer won"} `);
+            isGameOn = false;
+        }
+        else if (movesCount === cellsCount) {
+            console.log("draw");
+            isGameOn = false;
+        }
+        //next player move
+        gIsUserMove = !gIsUserMove;
+    }
+    console.log("Game over!");
+}
+//check 3 in a row \col \ diagnols:
 function checkVictory(currPos, symbol) {
-    let countCol = countInCol(currPos.j, symbol);
-    console.log(countCol);
-    if (countCol === 3) {
+    let count = countInCol(currPos.j, symbol);
+    if (count === gBoard.length)
         return true;
+    count = countInRow(currPos.i, symbol);
+    if (count === gBoard.length)
+        return true;
+    if (currPos.i === currPos.j) {
+        count = countInPrimaryDiagnol(symbol);
+        if (count === gBoard.length)
+            return true;
+    }
+    if (currPos.i + currPos.j === gBoard.length - 1) {
+        count = countInSeconderyDiagnol(symbol);
+        if (count === gBoard.length)
+            return true;
     }
     return false;
 }
@@ -31,6 +68,37 @@ function countInCol(col, symbol) {
     let j = col - 1;
     for (let i = 0; i < gBoard.length; i++) {
         const cell = gBoard[i][j];
+        if (cell === symbol)
+            count++;
+    }
+    return count;
+}
+//count if there 3 symbols in the current row
+function countInRow(row, symbol) {
+    let count = 0;
+    let i = row - 1;
+    for (let j = 0; j < gBoard[i].length; j++) {
+        const cell = gBoard[i][j];
+        if (cell === symbol)
+            count++;
+    }
+    return count;
+}
+//count if there 3 symbols in the current Primary Diagnol
+function countInPrimaryDiagnol(symbol) {
+    let count = 0;
+    for (let i = 0; i < gBoard.length; i++) {
+        const cell = gBoard[i][i];
+        if (cell === symbol)
+            count++;
+    }
+    return count;
+}
+//count if there 3 symbols in the current secondery Diagnol
+function countInSeconderyDiagnol(symbol) {
+    let count = 0;
+    for (let i = 0; i < gBoard.length; i++) {
+        const cell = gBoard[i][gBoard.length - 1 - i];
         if (cell === symbol)
             count++;
     }
@@ -86,7 +154,7 @@ function computerMove() {
     gBoard[computerPos.i][computerPos.j] = "O";
     return computerPos;
 }
-//create list of empty cells
+//create list of empty cells to computer turn
 function findEmptyPos() {
     let emptyPoses = [];
     for (let i = 0; i < gBoard.length; i++) {
@@ -98,9 +166,11 @@ function findEmptyPos() {
             }
         }
     }
+    //random pos due to the empty posses list
     let emptyPos = emptyPoses[getRandomInt(0, emptyPoses.length)];
     return emptyPos;
 }
+//create empty board for the begining
 function createBoard() {
     const board = [];
     for (let i = 0; i < 3; i++) {
@@ -111,14 +181,7 @@ function createBoard() {
     }
     return board;
 }
-function init() {
-    for (let i = 0; i < 3; i++) {
-        gBoard[i] = [];
-        for (let j = 0; j < 3; j++) {
-            gBoard[i][j] = "";
-        }
-    }
-}
+//random int
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }

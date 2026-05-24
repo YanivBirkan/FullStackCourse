@@ -2,27 +2,62 @@ let gBoard:string[][]=createBoard();
 let gIsUserMove:boolean = true;
 let gPos:Record<string, number>={};
 
-//check an
-gPos = playersMove();
-console.log(gPos);
-console.table(gBoard);
-gPos = playersMove();
-console.log(gPos);
-console.table(gBoard);
-gPos = playersMove();
-console.log(gPos);
-console.table(gBoard);
+//init the game
+init();
 
-let symbol:string = gIsUserMove ? 'X' : "O";
-let isVictory:boolean = checkVictory(gPos,symbol);
-if(isVictory) console.log("V");
+//init the board
+function init(){
+    for (let i = 0; i < 3; i++) {
+       gBoard[i]=[];
+       for (let j = 0; j <3; j++) {
+            gBoard[i][j]="";
+       }   
+    }
+    console.table(gBoard);
+    gIsUserMove =true;
+    playGame();
+}
 
-//check 3 in a row \col \ diagnol:
+function playGame(){
+
+    let isGameOn:boolean = true;
+    let movesCount:number = 0;
+    let cellsCount:number = gBoard.length **2;
+    while(isGameOn){
+        //move
+        gPos = playersMove();
+        console.log(gPos);
+        console.table(gBoard);
+        movesCount++;
+        //checks afte move
+        let symbol:string = gIsUserMove ? 'X' : "O";
+        let isVictory:boolean = checkVictory(gPos,symbol);
+        if(isVictory) {
+            console.log(`Victory ,  ${gIsUserMove ? "user won" : " computer won"} `);
+            isGameOn = false;
+        }else if(movesCount === cellsCount){
+            console.log("draw");
+            isGameOn = false;
+        }
+        //next player move
+        gIsUserMove = !gIsUserMove;
+    }
+    console.log("Game over!");
+}
+
+//check 3 in a row \col \ diagnols:
 function checkVictory(currPos:Record<string, number> , symbol:string):boolean{
-    let countCol:number = countInCol(currPos.j , symbol);
-    console.log(countCol);
-    if(countCol===3){
-        return true;
+    let count:number = countInCol(currPos.j , symbol);
+    if(count===gBoard.length)return true;
+    count = countInRow(currPos.i , symbol);
+    if(count===gBoard.length)return true;
+    if(currPos.i===currPos.j){
+        count=countInPrimaryDiagnol(symbol);
+        if(count===gBoard.length)return true;
+    }
+    if(currPos.i+currPos.j === gBoard.length-1){
+        count=countInSeconderyDiagnol(symbol);
+        if(count===gBoard.length)return true;
     }
     return false;
 }
@@ -37,6 +72,38 @@ function countInCol(col:number,symbol:string):number{
     }
     return count;
 }
+//count if there 3 symbols in the current row
+function countInRow(row:number,symbol:string):number{
+    let count:number =0;
+    let i:number = row-1;
+    for (let j = 0; j < gBoard[i].length; j++) {
+        const cell:string = gBoard[i][j];
+        if(cell===symbol) count++;
+    }
+    return count;
+}
+
+//count if there 3 symbols in the current Primary Diagnol
+function countInPrimaryDiagnol(symbol:string){
+    let count:number =0;
+    for (let i = 0; i < gBoard.length; i++) {
+        const cell:string = gBoard[i][i];
+        if(cell===symbol) count++;
+    }
+    return count;
+
+}
+//count if there 3 symbols in the current secondery Diagnol
+function countInSeconderyDiagnol(symbol:string){
+    let count:number =0;
+    for (let i = 0; i < gBoard.length; i++) {
+        const cell:string = gBoard[i][gBoard.length-1-i];
+        if(cell===symbol) count++;
+    }
+    return count;
+
+}
+
 //check if its player \ computer turn
 function playersMove():Record<string, number>{
     let pos:Record<string, number> = {};
@@ -72,6 +139,7 @@ function playUserMove(){
     let pos = gPos;
     return pos;
 }
+
 //create object of pos from the pos list
 function getPos(strPos:string):Record<string, number>{
     const playerPos:number[] |null= strPos.split(",").map(Number);
@@ -90,7 +158,7 @@ function computerMove(){
     return computerPos;
     
 }
-//create list of empty cells
+//create list of empty cells to computer turn
 function findEmptyPos():Record<string, number>{
     let emptyPoses:Record<string, number>[] = [];
     for (let i = 0; i < gBoard.length; i++) {
@@ -102,11 +170,12 @@ function findEmptyPos():Record<string, number>{
             }
         }
     }
+    //random pos due to the empty posses list
     let emptyPos:Record<string, number>= emptyPoses[getRandomInt(0,emptyPoses.length)]
     return emptyPos;
 }
 
-
+//create empty board for the begining
 function createBoard():string[][]{
     const board : string[][] = [];
     for (let i = 0; i < 3; i++) {
@@ -117,15 +186,7 @@ function createBoard():string[][]{
     }
     return board;
 }
-function init(){
-    for (let i = 0; i < 3; i++) {
-       gBoard[i]=[];
-       for (let j = 0; j <3; j++) {
-            gBoard[i][j]="";
-       }   
-    }
-}
-
+//random int
 function getRandomInt(min:number, max:number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
