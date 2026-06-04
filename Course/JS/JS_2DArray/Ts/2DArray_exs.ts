@@ -1,9 +1,4 @@
-// console.log("hello world")
-// const matrix: number[][] = [
-//   [1, 2, 3],
-//   [4, 5, 6],
-//   [7, 8, 9]
-// ];
+
 // //createBoard();
 // function createBoard(){
 //     const board:string[][]=[];
