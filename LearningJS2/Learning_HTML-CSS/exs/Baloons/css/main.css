@@ -13,11 +13,14 @@ h1{
 }
 .baloon-1{
     background-color: red;
-    left: 400px;
+    left: 200px;
 
 }
 .baloon-2{
     background-color: blue;
-    left: 200px;
-
+    left: 400px;
+}
+.baloon-3{
+    background-color: yellow;
+    left: 600px;
 }
