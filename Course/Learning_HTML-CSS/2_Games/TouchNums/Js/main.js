@@ -1,59 +1,73 @@
-
+//initials:
 let gnums=[]
 let gNum=0;
 let gLevel =3;
 let gNextNUm =0;
 let gStartTime= 0.000;
 let timeSPan =  document.querySelector(".timeSpan");
+//on init or restart
 function onInit(){
     gNextNUm=1;
     restartNums();
     renderBoard();
     restartNums();
+    document.querySelector(".victory").classList.add("hide")
+    timeSPan.innerText = "0:00.00";
 }
-// checkVictory()
+// build the board
 function renderBoard(){
     let strHtml='';
     for (let i = 0; i < gLevel; i++) {
         strHtml+=`<tr>`;
         for (let i = 0; i < gLevel; i++) {
             const num = drawNum();
-            strHtml+=`<td class="td-box" onclick="onCellClicked(this,${num})">${num}</td>`
+            strHtml+=`<td class="avibale" onclick="onCellClicked(this,${num})">${num}</td>`
         }
         strHtml+=`</tr>`;
     }
     let elboard = document.querySelector(".board-table");
     elboard.innerHTML=strHtml;
 }
+//on cell click
 function onCellClicked(elTd,num){
+    if(num===1){
+        startTimer();
+    }
     if(num===gNextNUm){
+        //if finsihed
         if(gNextNUm==gnums[gnums.length-1]){
-            alert();
+            stopTimer()
+            let elNextNum=document.querySelector(".nextNumber").innerText = gNextNUm;
+            elTd.disabled = true;
+            elTd.classList.add("disabeld");
+            elTd.classList.remove("avibale");
+            document.querySelector(".victory").classList.remove("hide")
         }
         else{
             console.log(elTd)
             gNextNUm++;
             let elNextNum=document.querySelector(".nextNumber").innerText = gNextNUm;
-            elTd.prop("disabled", true)
+            elTd.disabled = true;
+            elTd.classList.add("disabeld");
+            elTd.classList.remove("avibale");
         }
     }
 }
+//return random num to print in cell and remove from golbal num list
 function drawNum(){
     let numPlace = getRandomInt(0, gnums.length - 1); 
     let numKeep = gnums[numPlace];
     gnums.splice(numPlace, 1);
     return numKeep;
 }
-function checkVictory(){
-
-}
+//build num list by level
 function restartNums(){
     gnums=[];
     for (let i = 1; i <=gLevel**2; i++) {
        gnums.push(i);        
     }
-    
 }
+//render the board by the level 
 function onCHangeDificulty(num){
     gLevel=num
     restartNums();
@@ -61,6 +75,9 @@ function onCHangeDificulty(num){
     restartNums();
 }
 
+function stopTimer() {
+  clearInterval(timerId); 
+}
 
 let timerId = null;
 let startTime = 0;
@@ -74,8 +91,6 @@ function startTimer() {
   timerId = setInterval(updateDisplay, 16);
 
 }
-
-
 function updateDisplay() {
   // Calculate total milliseconds passed
   const currentElapsed = Date.now() - startTime;
@@ -99,9 +114,3 @@ function updateDisplay() {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-
-// function hidelement(el){
-//     document.querySelector(`"${el}"`).st
-// }
- 

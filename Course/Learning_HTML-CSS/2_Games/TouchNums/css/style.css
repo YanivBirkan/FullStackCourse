@@ -23,7 +23,7 @@ h1, h3{
   border-collapse: separate; /* Required for spacing to work */
   border-spacing: 5px 5px; /* Horizontal spacing (10px) and Vertical spacing (15px) */
 }
-td{
+td.avibale{
   color: antiquewhite;
   height: 50px;
   width: 50px;
@@ -32,18 +32,32 @@ td{
   text-align: center;
   padding: 10px;
 }
-td:hover {
+td.avibale:hover {
   font-weight: 500;
   background-color: rgb(30, 70, 113);
-
+}
+.disabeld{
+  color: antiquewhite;
+  height: 50px;
+  width: 50px;
+  background-color: rgb(255, 84, 84);
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+}
+.disabeld:hover{
+  font-weight: 500;
+  background-color: rgb(255, 84, 84);
 }
 .victory{
   text-align: center;
   padding-left: 50px;
   padding-right: 50px;
-  margin-top: 170px;
+  margin-top: 20px;
 }
-
+.hide{
+  display: none;
+}
 .btn {
 display: inline-block;
   box-shadow: rgba(156, 155, 155, 0.658) 0px 5px 15px;
