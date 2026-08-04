@@ -27,12 +27,16 @@ table {
     background-color: #761818;
     cursor: pointer;
 }
+.seat:hover{
+    background-color: #902a2a;
 
+}
 .selected {
     background-color: orange;
 }
 .booked {
     background-color: red;
+    transition: background-color 2s;
 }
 .seat.booked:hover {
     background-color: gray;
@@ -43,11 +47,15 @@ table {
     position: absolute;
     right: 20px;
     top: 20px;
-
     background-color: orange;
     padding: 20px;
-}
+    border-radius: 20px;
+    box-shadow: 20px 19px 15px 0px #111;
 
+}
+.btn-book-seat{
+    width: 100%;
+}
 .popup .btn-close {
     position: absolute;
     top: 10px;
@@ -56,4 +64,14 @@ table {
     background-color: transparent;
     border: 1px solid white;
     color: white;
+}
+.highlight{
+    
+    background-color: gray;
+}
+.btn-flash{
+    
+ background-color: transparent;
+ border:none
+
 }

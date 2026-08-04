@@ -1,7 +1,7 @@
 let gCinema ;
 let gElSelectedSeat = null;
 function onInit(){
-    gCinema = createCinema(7,15);
+    gCinema = createCinema(6,10);
     renderCinema();
 }
 
@@ -11,7 +11,7 @@ function createCinema(rows , cols) {
         cinema[i]=[];
         for (let j = 0; j < cols; j++) {
             cinema[i][j] =[];
-            const cell = { isSeat: j !== 7 }
+            const cell = { isSeat: j !== 2 && j !== 7 && i!==3} 
             if (cell.isSeat) {
                 cell.price = 5 + i;
                 cell.isBooked = false;
@@ -19,7 +19,6 @@ function createCinema(rows , cols) {
             cinema[i][j] = cell;
         }
     }
-    cinema[4][4].isBooked = true;
     return cinema;
 }
 function renderCinema(){
@@ -73,8 +72,8 @@ function onCellClicked(elCell, i, j) {
 
 function showSeatDetails(pos){
     const elPopup = document.querySelector(".popup");
-    const elBtn = elPopup.querySelector('.btn-book-seat')
-
+    const elBtn = elPopup.querySelector('.btn-book-seat');
+    const elBtns =elPopup.querySelectorAll(".btn");
     elPopup.removeAttribute("hidden");
     const seat = gCinema[pos.i][pos.j]
 
@@ -82,12 +81,11 @@ function showSeatDetails(pos){
     elPopup.querySelector("h3 span").innerText = `${seat.price}`;
     elPopup.querySelector('h4 span').innerText = countAvailableSeatsAround(gCinema, pos.i, pos.j);
 
-    elBtn.dataset.i = pos.i;
-    elBtn.dataset.j = pos.j;
+    elBtns.forEach(elBtn => {
+        elBtn.dataset.i = pos.i;
+        elBtn.dataset.j = pos.j;
+    });
 
-    const elFlashBtn  = elPopup.querySelector('.btn-flash');
-    elFlashBtn.dataset.i = pos.i;
-    elFlashBtn.dataset.j = pos.j;
     elPopup.hidden = false;
 
 }
@@ -112,14 +110,11 @@ function check(elBtn){
     const j = +elBtn.dataset.j;
     
     highlightAvailableSeatsAround(gCinema,i,j)
-        setTimeout(() => {
-        // Finds every element on the screen with the class "highlight"
+    setTimeout(() => {
         const highlightedCells = document.querySelectorAll('.highlight');
-        
-        // Loop through them and remove the class
         highlightedCells.forEach(cell => {
-            cell.classList.remove('highlight');
-        });
+        cell.classList.remove('highlight');
+    });
     }, 2000);
 }
 
@@ -169,4 +164,14 @@ function countAvailableSeatsAround(board, rowIdx, colIdx) {
 function removeHighlight(){
     currCell.classList.remove('highlight')
     
+}
+
+function closePop(elBtn){
+    let elPopup = document.querySelector(".popup")
+    elPopup.hidden = true;
+    let i = elBtn.dataset.i;
+    let j = elBtn.dataset.j;
+    let elCell=document.querySelector(`[data-i="${i}"][data-j="${j}"]`);
+    elCell.classList.remove("highlight")
+    renderCinema();
 }
