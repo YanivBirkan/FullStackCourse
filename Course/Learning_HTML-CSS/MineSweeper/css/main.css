@@ -1,15 +1,16 @@
+body{
+    background-color: rgba(245, 245, 220, 0.697);
+}
 h1{
     text-align: center;
 }
-body{
-    background-color: rgba(255, 255, 247, 0.697);
-}
+/* header */
 .settings{
     width: 100%;
     display: flex;
 }
 
-
+/* levels div */
 .levels{
     box-shadow: 16px 15px 15px 0px rgba(73, 73, 73, 0.2);;
     border-radius: 8px;
@@ -47,7 +48,7 @@ body{
     font-weight: bold ;
 
 }
-
+/* game details div's */
 .details{
     box-shadow: 16px 15px 15px 0px rgba(73, 73, 73, 0.2);;
     border-radius: 8px;
@@ -56,49 +57,56 @@ body{
     margin-left: 30px;
     background-color: #d1d1d1;
     font-size: 16px;
-
 }
 
+
 .emoji{
-    margin-left: 100px;
+    margin-left: 80px;
 }
 .emoji:hover{
     cursor: pointer;
 
 }
 .hints{
-        display: flex;
-      margin: 0;
-  padding: 0;
-  box-sizing: border-box; 
-  margin-left :100px;
-    cursor: pointer;
-
-}
-.details-top{
-    display: flex;
-      margin: 0;
-  padding: 0;
-  box-sizing: border-box; 
-  align-items: center;
-}
-.details-mid{
     display: flex;
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
+    margin-left :100px;
+    cursor: pointer;
+}
+.details-top{
+    display: flex;
+  padding: 0;
+  box-sizing: border-box; 
+  align-items: center;
+  margin-bottom: 15px;
+}
+.details-mid{
+    display: flex;
+    padding: 0;
+    box-sizing: border-box; 
+    margin-left: 20px;
+  margin-bottom: 15px;
+
 }
 .details-bot{
     display: flex;
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
+  margin-bottom: 15px;
+
 }
 .details h3{
     margin-left: 20px;
     margin-top: 10px;
+    margin-bottom: 0px;
+    display: flex;
+
 }
 
+/* hellpers div */
 .helpers{
   
     box-shadow: 16px 15px 15px 0px rgba(73, 73, 73, 0.2);;
@@ -159,8 +167,25 @@ body{
 }
 .cell {
     width: 35px;
-    height: 50px;
+    height: 35px;
     border-radius: 7px;
-    background-color: #3c3c3c;
+    /* background-color: #d1d1d1; */
+    background-color: #d1d1d1;
+    color:#f8faf9;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+/* board */
+.game-board{
+    width:max-content;
+    margin: 50px auto;
+}
 
+.bombed{
+    background-color: #f57474;
+}
+.clicked{
+    background-color: #9f9494;   
 }
