@@ -1,8 +1,0 @@
-div {
-    position: relative;
-}
-.inner {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-}
