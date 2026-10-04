@@ -1,0 +1,129 @@
+/* Large: 1100px */
+/* medium: 960px */
+/* small: 740px */
+
+/* MOBILE ONLY */
+@media(max-width: 900px) {
+
+    /* mobile menu */
+    .main-nav {
+        position: fixed;
+        background: #000;
+        top: 40px;
+        width: 100%;
+        left: 0;
+
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows .6s;
+        align-content: end;
+        align-items: end;
+        overflow: hidden;
+    }
+
+    body.menu-open .main-nav {
+        grid-template-rows: 1fr;
+    }
+
+    .main-nav>ul {
+        grid-auto-flow: row;
+        overflow: hidden;
+    }
+
+    .main-nav>ul>li {
+        border-bottom: 1px solid #ccc;
+
+    }
+
+    .main-nav a {
+        padding: 1.625rem 1rem;
+    }
+
+
+
+    .card {
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0.1, 0.1, 0.1, 0.12),
+            0 4px 6px rgba(0.12, 0.1, 0.1, 0.1);
+        padding: 1em;
+    }
+
+    .card a {
+        padding: .375em 1.3em;
+    }
+
+    .card .card-title,
+    .card .card-txt2 {
+        margin-bottom: 1.8rem;
+    }
+
+}
+
+/* SMALL */
+@media (min-width: 640px) {
+    .main-layout {
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, 600px) minmax(16px, 1fr);
+    }
+    .page-nav {
+        padding-inline: 3.125rem;
+    }
+}
+
+/* MEDIUM */
+@media (min-width: 900px) {
+    html {
+        font-size: 14px;
+    }
+
+    .main-layout {
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, 860px) minmax(16px, 1fr);
+    }
+
+    .card .card-title {
+        font-size: 2em;
+    }
+
+    /* CARD INTERNAL LAYOUT */
+    .card {
+        display: grid;
+        column-gap: 40px;
+        grid-template-columns: 1fr 1fr;
+        /* grid-template-rows: auto auto 1fr; */
+        /* grid-auto-rows: auto; */
+    }
+
+    .card img {
+        grid-column: 1;
+        grid-row: 1/span 3;
+        align-self: stretch;
+        object-fit: cover;
+    }
+
+    .main-nav a {
+        height: 8.125rem;
+        width: 8.125rem;
+    }
+
+
+}
+
+/* LARGE */
+@media (min-width: 1020px) {
+    html {
+        font-size: 16px;
+    }
+
+    .main-layout {
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, 980px) minmax(16px, 1fr);
+    }
+
+    .card>* {
+        margin-right: 1.25em;
+    }
+
+    .card .card-txt2 {
+        margin-bottom: 2.5rem;
+    }
+
+
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimø</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body class="main-layout">
+
+    <div class="main-screen" onclick="toggleMenu()"></div>
+
+    <header class="main-header flex space-between align-center">
+        <div class="logo">Blogin.</div>
+        <nav class="main-nav">
+            <ul class="flex clean-list">
+                <li><a href="#">Journal</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="btn-toggle-menu" type="button" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <main class="main-content card-layout">
+
+        <div class="card">
+            <img src="./imgs/001.png" alt="" class="card-image">
+            <div class="card-content flex">
+                <div class="card-tag">Duis aute irure dolor in henderit in voluptate.</div>
+                <!-- <h2 class="card-title">More than just a music festival</h2> -->
+                <p class="card-text">
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                </p>    
+                <p class="card-text">
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
+                </p>  
+                <button type="button" class="btn continue-button">Continue Reading </button>
+
+            </div>    
+  
+        </div>
+
+        <div class="card">
+            <img src="./imgs/002.png" alt="" class="card-image">
+            <div class="card-content flex">
+                <div class="card-tag">Duis aute irure dolor in henderit in voluptate.</div>
+                <!-- <h2 class="card-title">More than just a music festival</h2> -->
+                <p class="card-text">
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                </p>    
+                <p class="card-text">
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
+                </p>  
+                <button type="button" class="btn">Continue Reading </button>
+            </div> 
+        </div>   
+ 
+        <div class="card">
+            <img src="./imgs/003.png" alt="" class="card-image">
+        <div class="card-content flex">
+            <div class="card-tag">Duis aute irure dolor in henderit in voluptate.</div>
+            <!-- <h2 class="card-title">More than just a music festival</h2> -->
+            <p class="card-text">
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+            </p>    
+            <p class="card-text">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
+            </p>
+                <button type="button" class="btn">Continue Reading </button>
+
+        </div> 
+
+    </main>
+    
+    <footer class="main-footer full main-layout">
+        <div class="main-logo"> Blogin<span>.</span></div>
+        <small class="footer-rights">all rights reserved 2025</small>
+        <ul class="footer-social grid-even clean-list">
+            <li><a href="#" class="fa facebook">
+
+                </a></li>
+            <li><a href="#" class="fa twitter"></a></li>
+            <li><a href="#" class="fa behance"></a></li>
+            <li><a href="#" class="fa dribbble"></a></li>
+        </ul>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open')
+        }
+    </script>
+
+    <script src="js/style.js"></script>
+
+
+     
+
+</body>
+
+</html>
